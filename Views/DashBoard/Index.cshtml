@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+@model YellowTail.Models.Dashboard
+@using YellowTail.Models;
+    <h1>Plan Your activity!</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+<table class="table table-bordered">
+    <!-- dashboard model and models passed through for user and dashboard viewmodel -->
+    <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Number of Participants</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Activity w in Model.Activities)
+        {
+        <tr>
+            <td><a href="/dashboard/show/@w.activityId">@w.title</a></td>
+            <td>@w.datetime.ToString()</td>
+            <td>@w.duration</td>
+            <td></td>
+            <td>@w.Participants.Count()</td>
+            @{
+                if(w.userId == Model.User.userId)
+                {<td><a href="/dashboard/deleteactivity/@w.activityId">Delete</a></td>}
+                else
+                {
+                if(w.Participants.Where(g => g.userId == Model.User.userId).SingleOrDefault() == null)
+                    {<td><a href="/dashboard/joinactivity/@w.activityId">Join</a></td>}
+                else
+                    {<td><a href="/dashboard/unjoin/@w.activityId">Leave</a></td>}
+
+                }
+            }
+         
+        </tr>
+        }
+    </tbody>
+    <a href="/dashboard/create"><button>Add New Activity!</button></a>
+</table>

@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using YellowTail.Models 
+<h1>Idea Fun!</h1>
+<!-- Wedding models passed through with title assigned to value of Home Page -->
+<!-- Partials pointed to within index html -->
+<hr>
+<div class="index-form">@Html.Partial("./Partials/Register")</div>
+<div class="index-form">@Html.Partial("./Partials/Login")</div>

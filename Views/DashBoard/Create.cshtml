@@ -1,0 +1,31 @@
+@model YellowTail.Models.ViewActivity
+<nav>
+    <h1>Plan Your activity!</h1>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav> 
+<!-- Similar form functionality to user but for creating a new wedding -->
+<h2>Register</h2>
+<form method="POST" asp-controller="Dashboard" asp-action="Create">
+    <div class="form-group">
+        <span asp-validation-for="Title"></span>
+        <label asp-for="Title"></label>
+        <input class="form-control" asp-for="Title">
+    </div>
+        <div class="form-group">
+        <span asp-validation-for="DateTime"></span>
+        <label asp-for="DateTime"></label>
+        <input class="form-control" asp-for="DateTime">
+    </div>
+        <div class="form-group">
+        <span asp-validation-for="Duration"></span>
+        <label asp-for="Duration"></label>
+        <input class="form-control" asp-for="Duration">
+    </div>
+        <div class="form-group">
+        <span asp-validation-for="Description"></span>
+        <label asp-for="Description"></label>
+        <input class="form-control" asp-for="Description">
+        </div>
+    <input type="submit" value="Create">
+</form>

@@ -1,0 +1,29 @@
+@model YellowTail.Models.ShowActivity
+@using YellowTail.Models
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+    <h1>@Model.Activity.title</h1>
+</nav>
+    <h2>Description:</h2>
+    <p>@Model.Activity.description</p>
+    <h2>Participants:</h2>
+
+<ul>
+
+</ul>
+
+
+            @{
+                if(Model.Activity.userId == Model.User.userId)
+                {<td><a href="/dashboard/deleteactivity/@Model.Activity.activityId">Delete</a></td>}
+                else
+                {
+                if(Model.Activity.Participants.Where(g => g.userId == Model.User.userId).SingleOrDefault() == null)
+                    {<td><a href="/dashboard/joinactivity/@Model.Activity.activityId">Join</a></td>}
+                else
+                    {<td><a href="/dashboard/unjoin/@Model.Activity.activityId">Leave</a></td>}
+
+                }
+            }
